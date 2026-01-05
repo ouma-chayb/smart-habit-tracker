@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(to right, #0f766e, #22c55e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-card {
+            width: 420px;
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .brand {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #0f766e;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background: #0f766e;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #115e59;
+        }
+
+        a {
+            color: #0f766e;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-card">
+        <div class="brand">
+            🕌 Smart Habit Tracker
+        </div>
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

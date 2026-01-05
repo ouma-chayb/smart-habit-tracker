@@ -1,0 +1,36 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.habit-card {
+    border-radius: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.habit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.card-title {
+    font-weight: 600;
+}
+
+.btn-outline-success {
+    border-radius: 20px;
+}
+.habit-card {
+    border-radius: 12px;
+    transition: transform 0.2s;
+}
+.habit-card:hover {
+    transform: translateY(-5px);
+}
+.gradient {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+

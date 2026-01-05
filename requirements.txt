@@ -1,0 +1,6 @@
+flask
+Flask-Login
+Flask-SQLAlchemy
+pandas
+reportlab
+

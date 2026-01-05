@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "email": "oumayma@gmail.com",
+      "password": "scrypt:32768:8:1$gbb3HcBd0aBJOgvE$fb77e84e6bf6779e246a5d182e8dd7a238a17d54677d4fec0b04caa5115d8659b2070a13790bd2b578dffffacad9d92c5f4d962036bd06435a94bf8723e86175",
+      "habits": [
+        {
+          "name": "Sport",
+          "progress": [
+            "2026-01-05"
+          ],
+          "streak": 1,
+          "record": 1,
+          "days_missed": 0,
+          "last_done": "2026-01-05"
+        },
+        {
+          "name": "Read",
+          "progress": [],
+          "streak": 0,
+          "record": 0,
+          "days_missed": 0,
+          "last_done": null
+        }
+      ]
+    }
+  ]
+}
