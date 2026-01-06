@@ -27,14 +27,17 @@ def save_data(data):
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=2)
 
+# ⚠️ CRITIQUE : retourne la vraie référence
 def get_current_user(data):
     email = session.get("user")
     if not email:
         return None
-    for u in data["users"]:
+
+    for i, u in enumerate(data["users"]):
         if u["email"] == email:
-            return u
+            return data["users"][i]   # vraie référence JSON
     return None
+
 
 # =========================
 # Validation
@@ -80,6 +83,7 @@ def register():
 
     return render_template("register.html")
 
+
 @main.route("/login", methods=["GET","POST"])
 def login():
     if request.method == "POST":
@@ -95,6 +99,7 @@ def login():
         return render_template("login.html", error="Invalid email or password")
 
     return render_template("login.html")
+
 
 @main.route("/logout")
 def logout():
@@ -118,7 +123,8 @@ def index():
     labels = [h.name for h in habits]
     values = [len(h.progress) for h in habits]
 
-    return render_template("index.html",
+    return render_template(
+        "index.html",
         habits=habits,
         labels=labels,
         values=values,
@@ -166,11 +172,11 @@ def mark_done():
     today = date.today().isoformat()
     name = request.form["habit"]
 
-    for h in user["habits"]:
+    for i, h in enumerate(user["habits"]):
         if h["name"] == name:
             habit = Habit(**h)
             habit.mark_done(today)
-            h.update(habit.to_dict())
+            user["habits"][i] = habit.to_dict()   # 🔥 écriture correcte
 
     save_data(data)
     return redirect("/")
@@ -178,7 +184,6 @@ def mark_done():
 # =========================
 # EXPORT CSV
 # =========================
-
 @main.route("/export/csv")
 def export_csv():
     data = load_data()
@@ -196,9 +201,10 @@ def export_csv():
     } for h in habits]
 
     df = pd.DataFrame(rows)
-    return Response(df.to_csv(index=False), mimetype="text/csv",
-        headers={"Content-Disposition":"attachment; filename=habits.csv"})
-
+    return Response(df.to_csv(index=False),
+        mimetype="text/csv",
+        headers={"Content-Disposition":"attachment; filename=habits.csv"}
+    )
 
 # =========================
 # EXPORT PDF
@@ -216,16 +222,13 @@ def export_pdf():
     pdf = canvas.Canvas(buffer)
     pdf.setFont("Helvetica-Bold", 18)
 
-    # Title
     pdf.drawCentredString(300, 820, "SMART HABIT TRACKER")
     pdf.setFont("Helvetica", 12)
     pdf.drawCentredString(300, 800, "Daily Progress Report")
 
-    # User info
     pdf.drawString(50, 760, f"User: {user['email']}")
     pdf.drawString(50, 740, f"Date: {date.today().strftime('%d %B %Y')}")
 
-    # Summary
     y = 700
     pdf.setFont("Helvetica-Bold", 14)
     pdf.drawString(50, y, "SUMMARY")
@@ -239,42 +242,26 @@ def export_pdf():
     pdf.drawString(50, y, f"Total days completed: {total_days}"); y -= 15
     pdf.drawString(50, y, f"Best streak: {best_streak}"); y -= 30
 
-    # Habits
     pdf.setFont("Helvetica-Bold", 14)
     pdf.drawString(50, y, "HABITS")
     y -= 20
 
     for h in habits:
         pdf.setFont("Helvetica-Bold", 12)
-        pdf.drawString(50, y, f"{h.name}")
-        y -= 15
-
+        pdf.drawString(50, y, h.name); y -= 15
         pdf.setFont("Helvetica", 11)
-        pdf.drawString(70, y, f"Streak: {h.streak} days"); y -= 15
-        pdf.drawString(70, y, f"Record: {h.record} days"); y -= 15
-
-        if h.progress:
-            pdf.drawString(70, y, f"Last done: {h.progress[-1]}")
-            y -= 15
-
-        pdf.drawString(70, y, f"Motivation: {h.get_motivation()}")
-        y -= 25
+        pdf.drawString(70, y, f"Streak: {h.streak}"); y -= 15
+        pdf.drawString(70, y, f"Record: {h.record}"); y -= 15
+        pdf.drawString(70, y, f"Motivation: {h.get_motivation()}"); y -= 25
 
         if y < 100:
             pdf.showPage()
             y = 800
 
-    # Footer
-    pdf.setFont("Helvetica-Oblique", 11)
-    pdf.drawCentredString(300, 50, "Small habits today create big results tomorrow.")
-
     pdf.save()
     buffer.seek(0)
 
-    return Response(
-        buffer,
-        mimetype="application/pdf",
-        headers={"Content-Disposition": "attachment; filename=smart_habits_report.pdf"}
+    return Response(buffer, mimetype="application/pdf",
+        headers={"Content-Disposition":"attachment; filename=smart_habits_report.pdf"}
     )
-
 

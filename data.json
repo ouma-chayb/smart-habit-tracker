@@ -2,25 +2,81 @@
   "users": [
     {
       "email": "oumayma@gmail.com",
-      "password": "scrypt:32768:8:1$gbb3HcBd0aBJOgvE$fb77e84e6bf6779e246a5d182e8dd7a238a17d54677d4fec0b04caa5115d8659b2070a13790bd2b578dffffacad9d92c5f4d962036bd06435a94bf8723e86175",
+      "password": "scrypt:32768:8:1$iEBYowUgUrjcxnKi$34b5a5c67ed430a6c0ceb4bba7090fb06ed5172ee9f1e8984f81c91ffd50cb4d69cbe81c50a5508db190b9e012f1775e5fea7a6c15cd3ad8b618bbaffd3999f8",
       "habits": [
         {
-          "name": "Sport",
-          "progress": [
-            "2026-01-05"
-          ],
-          "streak": 1,
-          "record": 1,
-          "days_missed": 0,
-          "last_done": "2026-01-05"
-        },
-        {
-          "name": "Read",
+          "name": "hello",
           "progress": [],
           "streak": 0,
           "record": 0,
           "days_missed": 0,
           "last_done": null
+        },
+        {
+          "name": "read",
+          "progress": [
+            "2026-01-06"
+          ],
+          "streak": 1,
+          "record": 1,
+          "days_missed": 0,
+          "last_done": "2026-01-06"
+        },
+        {
+          "name": "Se lever \u00e0 6h tous les jours.",
+          "progress": [],
+          "streak": 0,
+          "record": 0,
+          "days_missed": 0,
+          "last_done": null
+        }
+      ]
+    },
+    {
+      "email": "chaymae@gmail.com",
+      "password": "scrypt:32768:8:1$jqU1De8KOuFjfOYW$dcc8e2442b2ed72cdf1f86616dd9d2946100713f2ad9e749150938081e5cb047845bc541fe0706e44d7e91b3b4bcb3c08918e0a4f1528a57ded5f27773904a1e",
+      "habits": [
+        {
+          "name": "hello",
+          "progress": [],
+          "streak": 0,
+          "record": 0,
+          "days_missed": 0,
+          "last_done": null
+        },
+        {
+          "name": "hi",
+          "progress": [
+            "2026-01-06"
+          ],
+          "streak": 1,
+          "record": 1,
+          "days_missed": 0,
+          "last_done": "2026-01-06"
+        }
+      ]
+    },
+    {
+      "email": "issame@gmail.com",
+      "password": "scrypt:32768:8:1$AgTGmKXf7CdnpR4x$aaa26a27c52a705acc5800f9ce704bb3ad80443287fd18636b12c6d85048cb88c97db409eab8708dd411d75c093c377fd66368484fef762952da6b30bcc2b909",
+      "habits": [
+        {
+          "name": "hello",
+          "progress": [],
+          "streak": 0,
+          "record": 0,
+          "days_missed": 0,
+          "last_done": null
+        },
+        {
+          "name": "pfs",
+          "progress": [
+            "2026-01-06"
+          ],
+          "streak": 1,
+          "record": 1,
+          "days_missed": 0,
+          "last_done": "2026-01-06"
         }
       ]
     }
