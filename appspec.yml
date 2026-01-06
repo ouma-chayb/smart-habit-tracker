@@ -1,0 +1,15 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /home/ec2-user/smart-habit-tracker
+
+hooks:
+  BeforeInstall:
+    - location: scripts/stop.sh
+      timeout: 60
+
+  AfterInstall:
+    - location: scripts/start.sh
+      timeout: 60
